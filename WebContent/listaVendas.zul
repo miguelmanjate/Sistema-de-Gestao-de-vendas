@@ -1,0 +1,25 @@
+<?page title="LISTA DE VENDAS" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="LISTA DE VENDAS" border="normal"
+	apply="mz.com.manjate.controller.ListarVendasController">
+
+		<panel>
+			<panelchildren>
+			<listbox id = "lbxVendas" >
+				<listhead>
+					<listheader label="Id Venda" sort="auto"></listheader>
+					<listheader label="Cliente" sort="auto"></listheader>
+					<listheader label="Vendedor" sort="auto"></listheader>
+					<listheader label="Quantidade" sort="auto"></listheader>
+					<listheader label="Produtos" sort="auto"></listheader>
+					<listheader label="Total" sort="auto"></listheader>
+				</listhead>
+				<listitem>
+					<listcell label=""></listcell>
+					<listcell label=""></listcell>
+				</listitem>
+			</listbox>
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

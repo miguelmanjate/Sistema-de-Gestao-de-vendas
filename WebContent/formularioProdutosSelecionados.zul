@@ -1,0 +1,35 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Produtos Selecionados" border="normal"
+		apply="mz.com.manjate.controller.EfetuarVendaController">
+		<panel>
+			<panelchildren>
+				<listbox id="lbxProdutosAdicionados">
+					<listhead>
+						<listheader label="Descricao" sort="auto"></listheader>
+						<listheader label="Preco unitario" sort="auto"></listheader>
+						<listheader label="Quantidade Pedida" sort="auto"></listheader>
+						<listheader label="Valor Total" sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+
+
+		<grid>
+			<columns>
+				<column label=""></column>
+				<column label=""></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox></hbox>
+					<hbox>
+						<button label="Adicionar Produtos" id ="btnAddProdutos"></button>
+						<button label="Vender" id= "btnVender"></button>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

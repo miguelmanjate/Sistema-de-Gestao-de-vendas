@@ -1,0 +1,132 @@
+<?page title="EFETUAR VENDA" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="EFETUAR VENDA" border="normal"
+		apply="mz.com.manjate.controller.EfetuarVendaController">
+
+		<panel>
+			<panelchildren>
+				<grid>
+					<columns>
+						<column label="CLIENTE"></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Nome Do Cliente "></label>
+							<textbox id="nomeCliente" constraint="no empty: campo obrigatorio" ></textbox>
+						</row>
+						<row>
+							<label value="Endereco Do Cliente"></label>
+							<textbox id="enderecoCliente" constraint="no empty: campo obrigatorio" ></textbox>
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								<button label="Avancar"
+									id="btnCliente">
+								</button>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator></separator>
+		<panel>
+			<panelchildren>
+				<grid>
+					<columns>
+						<column label="INICIO DE PEDIDO"></column>
+					</columns>
+					<rows>
+						<row><hbox></hbox>
+							<hbox>
+								<label value=" "></label>
+								<label id="valueCliente"></label>
+								<label value="ID "></label>
+								<label id="valueClienteId"></label>
+							</hbox>
+						</row>
+						<row>
+							<label value="Vendedor"></label>
+							<combobox id="cmbxVendedor" constraint="no empty: campo obrigatorio"></combobox>
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								
+								<button label="Avancar"
+									id="btnInPedido">
+								</button>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+
+		</panel>
+		<separator></separator>
+		<panel>
+			<panelchildren>
+				<grid>
+					<columns>
+						<column label="COMPRA"></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Numero do Pedido"></label>
+							<label id="numPedidoValue"></label>
+						</row>
+						<row>
+							<label value="Nome do Cliente"></label>
+							<label id="nomeClienteValue"></label>
+						</row>
+						<row>
+							<label value="Nome do Vendedor"></label>
+							<label id="nomeVendedor"></label>
+						</row>
+						<row>
+						<hbox></hbox>
+							<hbox>
+							<textbox id = "descricaoProduto" constraint="no empty: campo obrigatorio" ></textbox>
+							<button label="Produto" id = "btnDescricaoPro"></button>
+							</hbox>
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								<textbox width ="60px" id ="quantidadeProduto" constraint="no empty: campo obrigatorio"></textbox>
+								<button label="Quantidade" id = "btnQuantidade"></button>
+							</hbox>
+
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								<button label="Avancar" id="btnAvancarLista" ></button>
+								<button label="Cancelar"
+									id="btnCancelarPedido">
+								</button>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator></separator>
+		<panel>
+			<panelchildren>
+				<listbox id = "lbxProdutoSelecionado" >
+					<listhead>
+						<listheader label="ID" sort="auto"></listheader>
+						<listheader label="Descricao" sort="auto"></listheader>
+						<listheader label="Preco unitario" sort="auto"></listheader>
+						<listheader label="Quantidade Existente" sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+		
+		<separator></separator>
+		<div id = "conteudoEfetuarVenda" ></div>
+	</window>
+</zk>

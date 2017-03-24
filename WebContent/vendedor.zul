@@ -1,0 +1,45 @@
+<?page title="CADASTRO DE VENDEDOR" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="CADASTRO DE VENDEDOR" border="normal"
+		apply="mz.com.manjate.controller.VendedorController">
+
+		<panel>
+			<panelchildren>
+				<grid>
+					<columns>
+						<column label=""></column>
+						<column label=""></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Nome"></label>
+							<textbox id="nomeVendedor"></textbox>
+						</row>
+						<row>
+							<label value="Salario"></label>
+							<textbox id="salarioVendedor"></textbox>
+
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								<button label="Gravar" id="btnGravar"></button>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator></separator>
+		<panel>
+			<panelchildren>
+				<listbox id = "lbxVendedor" >
+					<listhead>
+						<listheader label="ID" sort="auto"></listheader>
+						<listheader label="Nome" sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

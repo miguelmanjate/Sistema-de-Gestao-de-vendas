@@ -1,0 +1,18 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Lista de Vendedores" border="normal" apply="mz.com.manjate.controller.ListarVendedorController" >
+
+		<panel>
+			<panelchildren>
+				<listbox id = "lbxVendedor" >
+					<listhead>
+						<listheader label="ID do Vendedor" sort="auto"></listheader>
+						<listheader label="Nome " sort="auto"></listheader>
+						<listheader label="Salario " sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+
+		</panel>
+	</window>
+</zk>

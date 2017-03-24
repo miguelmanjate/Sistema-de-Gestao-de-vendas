@@ -1,0 +1,34 @@
+<?page title="SISTEMA DE GESTAO DE VENDAS"?>
+<window title="SISTEMA DE GESTAO DE VENDAS" border="normal"
+	 apply="mz.com.manjate.controller.MenuCrontroller"
+	 >
+
+	<menubar>
+		<menu label="Venda">
+			<menupopup>
+				<menuitem label="Efectoar Venda" id = "efetuarVenda"></menuitem>
+			</menupopup>
+		</menu>
+		<menu label="Produto">
+			<menupopup>
+				<menuitem label="Cadastrar Produto" id = "cadastrarProduto"></menuitem>
+			</menupopup>
+		</menu>
+		<menu label="Vendedor">
+			<menupopup>
+				<menuitem label="Cadastrar Vendedor" id = "cadastroVendedor" ></menuitem>
+			</menupopup>
+		</menu>
+		<menu label="Relatorios">
+			<menupopup>
+				<menuitem label="Listar Produto" id ="listarProduto" ></menuitem>
+				<menuseparator />
+				<menuitem label="Listar Vendas" id = "listarVendas"></menuitem>
+				<menuseparator />
+				<menuitem label="Listar Vendedor" id = "listarVendedor" ></menuitem>
+			</menupopup>
+		</menu>
+	</menubar>
+	<separator height="20px" ></separator>
+	<div id = "conteudo" ></div>
+</window>

@@ -1,0 +1,53 @@
+<?page title="CADASTRO DE PRODUTO" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="CADASTRO DE PRODUTO" border="normal" apply="mz.com.manjate.controller.ProdutoController" >
+
+		<panel>
+			<panelchildren>
+
+				<grid>
+					<columns>
+						<column label=""></column>
+						<column label=""></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Descricao"></label>
+							<textbox id="descricao"></textbox>
+						</row>
+						<row>
+						<label value="Preco Unitario"></label>
+							<textbox id="precoUnitario"></textbox>
+							
+						</row>
+						<row>
+							<label value="Quanantidade de Estoque"></label>
+							<textbox id="quantidadeEstoque"></textbox>
+						</row>
+						<row>
+							<hbox></hbox>
+							<hbox>
+								<button label="Gravar" id = "btnGravar" ></button>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator></separator>
+		<panel>
+			<panelchildren>
+				<listbox id = "lbxProduto" >
+					<listhead>
+						<listheader label="ID" sort="auto"></listheader>
+						<listheader label="Descricao" sort="auto"></listheader>
+						<listheader label="preco unitario" sort="auto"></listheader>
+						<listheader label="quantidade de estoque" sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+
+	</window>
+
+</zk>

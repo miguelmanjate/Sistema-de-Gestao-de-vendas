@@ -1,0 +1,21 @@
+<?page title="LISTA DE PRODUTOS" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="LISTA DE PRODUTOS" border="normal" apply="mz.com.manjate.controller.ListarProdutoController"
+
+ >
+
+<panel>
+			<panelchildren>
+				<listbox id = "lbxProduto" >
+					<listhead>
+						<listheader label="ID" sort="auto"></listheader>
+						<listheader label="Descricao" sort="auto"></listheader>
+						<listheader label="Preco unitario" sort="auto"></listheader>
+						<listheader label="Quantidade de Estoque" sort="auto"></listheader>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+
+</window>
+</zk>
