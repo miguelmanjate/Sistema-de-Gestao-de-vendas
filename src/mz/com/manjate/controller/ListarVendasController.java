@@ -35,16 +35,19 @@ public class ListarVendasController extends GenericForwardComposer<Component> {
 			Listcell cell2 = new Listcell(pedido.getCliente().getCliente());
 			Listcell cell3 = new Listcell(pedido.getVendedor().getVendedor());
 			Listcell cell4 = new Listcell();
-			Listcell cell5 = new Listcell();
-			for (Produto produto : pedido.getProdutos()) {
 			
-		    Li li = new Li();
-		    Text t = new Text(produto.getDescricao());
-		    
-		    li.appendChild(t);
-		    cell5.appendChild(li);
-				//Listcell cell6 = new Listcell("" + item_pedidos.size());
-			}
+			for (Produto produto : pedido.getProdutos()) {
+				
+			    Li li = new Li();
+			    Text t = new Text(produto.getDescricao());
+			    
+			    li.appendChild(t);
+			    cell4.appendChild(li);
+					//Listcell cell6 = new Listcell("" + item_pedidos.size());
+				}
+			
+			Listcell cell5 = new Listcell();
+			
 			item.appendChild(cell1);
 			item.appendChild(cell2);
 			item.appendChild(cell3);

@@ -10,8 +10,8 @@
 					<listheader label="Id Venda" sort="auto"></listheader>
 					<listheader label="Cliente" sort="auto"></listheader>
 					<listheader label="Vendedor" sort="auto"></listheader>
-					<listheader label="Quantidade" sort="auto"></listheader>
 					<listheader label="Produtos" sort="auto"></listheader>
+					<listheader label="Quantidade" sort="auto"></listheader>
 					<listheader label="Total" sort="auto"></listheader>
 				</listhead>
 				<listitem>
