@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -20,17 +21,16 @@ public class Produto {
 	private int quantidadeProduto;
 	@Transient
 	private int quantidadePedida;
-//	@ManyToMany(mappedBy="produtos", fetch = FetchType.EAGER)
-//	private List<Pedido> pedido;
-//	
-//	
-//	
-//	public List<Pedido> getPedido() {
-//		return pedido;
-//	}
-//	public void setPedido(List<Pedido> pedido) {
-//		this.pedido = pedido;
-//	}
+    
+	@OneToMany(mappedBy = "produto", fetch = FetchType.EAGER)
+	List<ItemPedido> itemPedidos;
+	
+	public List<ItemPedido> getItemPedidos() {
+		return itemPedidos;
+	}
+	public void setItemPedidos(List<ItemPedido> itemPedidos) {
+		this.itemPedidos = itemPedidos;
+	}
 	public int getQuantidadePedida() {
 		return quantidadePedida;
 	}

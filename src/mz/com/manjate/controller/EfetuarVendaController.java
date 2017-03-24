@@ -20,10 +20,12 @@ import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.Textbox;
 
 import mz.com.manjate.model.Cliente;
+import mz.com.manjate.model.ItemPedido;
 import mz.com.manjate.model.Pedido;
 import mz.com.manjate.model.Produto;
 import mz.com.manjate.model.Vendedor;
 import mz.manjate.jpa.ClienteJPA;
+import mz.manjate.jpa.ItemPedidoJPA;
 import mz.manjate.jpa.PedidoJPA;
 import mz.manjate.jpa.ProdutoJPA;
 import mz.manjate.jpa.VendedorJPA;
@@ -227,21 +229,21 @@ private Cliente getClienteGlobal(){
 	}
 	public void onClick$btnVender(Event e) {
 		Produto produto;
-		List<Produto> produtos = new ArrayList<>();
+	
 	    List<Listitem> items =	lbxProdutosAdicionados.getItems();
-	    //lbxProdutosAdicionados.getItems().clear();
 	    
+	    Pedido pedido = PedidoJPA.getBayId(Integer.parseInt(numPedidoValue.getValue()));
 	for(Listitem i : items ){
 		produto = (Produto) i.getValue(); 
 		produto.setQuantidadeProduto(produto.getQuantidadeProduto() - produto.getQuantidadePedida());
-		System.out.println("Pontos 2 "+produto.getQuantidadePedida());
+		
 		ProdutoJPA.atualizar(produto);
-		produtos.add(produto);
+		ItemPedido item = new ItemPedido();
+		item.setPedido(pedido);
+		item.setProduto(produto);
+		item.setQuantidade(produto.getQuantidadePedida());
+	    ItemPedidoJPA.adicionar(item);
 	}
-	
-		Pedido pedido = PedidoJPA.getBayId(Integer.parseInt(numPedidoValue.getValue()));
-		pedido.setProdutos(produtos);
-		PedidoJPA.atualizar(pedido);
 		formularioEfetuarVendas();
 	}
 

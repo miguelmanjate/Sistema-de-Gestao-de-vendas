@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.engine.internal.Cascade;
 
@@ -28,45 +29,59 @@ public class Pedido {
 	@JoinColumn(name = "id_vendedor")
 	private Vendedor vendedor;
 	
-	@ManyToMany(fetch= FetchType.EAGER)
-	@JoinTable(name="pedido_produto", 
-	joinColumns = @JoinColumn(name = "num_pedido"),
-    inverseJoinColumns =  @JoinColumn(name="id_produto"))
-	private List<Produto> produtos;
-
+	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
+	List<ItemPedido> itemPedidos; 
+	
+	
+	
 	public int getNum_pedido() {
 		return num_pedido;
 	}
+
+
 
 	public void setNum_pedido(int num_pedido) {
 		this.num_pedido = num_pedido;
 	}
 
+
+
 	public Cliente getCliente() {
 		return cliente;
 	}
+
+
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
+
+
 	public Vendedor getVendedor() {
 		return vendedor;
 	}
+
+
 
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+
+
+	public List<ItemPedido> getItemPedidos() {
+		return itemPedidos;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+
+
+	public void setItemPedidos(List<ItemPedido> itemPedidos) {
+		this.itemPedidos = itemPedidos;
 	}
-	
-	
+
+
+
 	public boolean isValid() {
 		return cliente!= null && vendedor!= null ;
 	}
