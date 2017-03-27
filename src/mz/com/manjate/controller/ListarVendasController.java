@@ -1,5 +1,7 @@
 package mz.com.manjate.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.zkoss.zhtml.Li;
@@ -25,7 +27,8 @@ public class ListarVendasController extends GenericForwardComposer<Component> {
 	}
 
 	public void listarVenda() {
-
+		DateFormat df = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+		
 		List<Pedido> pedidos = PedidoJPA.listar();
 		lbxVendas.getItems().clear();
 		for (Pedido pedido : pedidos) {
@@ -51,14 +54,19 @@ public class ListarVendasController extends GenericForwardComposer<Component> {
 			
 			Listcell cell5 = new Listcell(""+totalProduto);
 			Listcell cell6 = new Listcell(""+totalPreco+"0$ MT");
-			
+			Listcell cell7 = new Listcell();
+			if(pedido.getDataHora()!= null){
+				Text t = new Text(df.format(pedido.getDataHora()));
+			cell7.appendChild(t);
+			}
 			item.appendChild(cell1);
 			item.appendChild(cell2);
 			item.appendChild(cell3);
 			item.appendChild(cell4);
 			item.appendChild(cell5);
 			item.appendChild(cell6);
-
+            item.appendChild(cell7);
+			
 			item.setValue(pedido);
 			lbxVendas.appendChild(item);
 		}

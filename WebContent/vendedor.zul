@@ -21,6 +21,11 @@
 
 						</row>
 						<row>
+							<label value="Data de nascimento"></label>
+							<datebox id = "dataNascimento" />
+
+						</row>
+						<row>
 							<hbox></hbox>
 							<hbox>
 								<button label="Gravar" id="btnGravar"></button>
@@ -37,6 +42,7 @@
 					<listhead>
 						<listheader label="ID" sort="auto"></listheader>
 						<listheader label="Nome" sort="auto"></listheader>
+						<listheader label="Data de nascimento" sort="auto"></listheader>
 					</listhead>
 				</listbox>
 			</panelchildren>

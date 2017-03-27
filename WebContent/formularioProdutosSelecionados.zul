@@ -7,8 +7,12 @@
 				<listbox id="lbxProdutosAdicionados">
 					<listhead>
 						<listheader label="Descricao" sort="auto"></listheader>
-						<listheader label="Preco unitario" sort="auto"></listheader>
-						<listheader label="Quantidade Pedida" sort="auto"></listheader>
+						<listheader label="Preco unitario"
+							sort="auto">
+						</listheader>
+						<listheader label="Quantidade Pedida"
+							sort="auto">
+						</listheader>
 						<listheader label="Valor Total" sort="auto"></listheader>
 					</listhead>
 				</listbox>
@@ -25,11 +29,14 @@
 				<row>
 					<hbox></hbox>
 					<hbox>
-						<button label="Adicionar Produtos" id ="btnAddProdutos"></button>
-						<button label="Vender" id= "btnVender"></button>
+						<button label="Adicionar Produtos"
+							id="btnAddProdutos">
+						</button>
+						<button label="Vender" id="btnVender"></button>
 					</hbox>
 				</row>
 			</rows>
 		</grid>
+	
 	</window>
 </zk>

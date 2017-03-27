@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import mz.com.manjate.model.Produto;
 import mz.com.manjate.model.Vendedor;
 
 
@@ -42,6 +43,18 @@ public class VendedorJPA {
 		return vendedor;
 		
 	}
+public static void atualizar(Vendedor vendedor){
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("modelJPA");
+		EntityManager manager = factory.createEntityManager();
+				
+		manager.getTransaction().begin();
+		manager.merge(vendedor);
+		manager.getTransaction().commit();
+		
+		
+	}
+	
 
 
 }

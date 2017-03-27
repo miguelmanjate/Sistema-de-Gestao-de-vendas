@@ -1,43 +1,24 @@
 package mz.com.manjate.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.zkoss.zul.Listcell;
-
-import com.sun.java_cup.internal.runtime.Scanner;
-
-import mz.manjate.jpa.ClienteJPA;
-import mz.manjate.jpa.ItemPedidoJPA;
 import mz.manjate.jpa.PedidoJPA;
-import mz.manjate.jpa.ProdutoJPA;
-import mz.manjate.jpa.VendedorJPA;
 
 public class GeraTabelas {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
-	Pedido p1 = PedidoJPA.getBayId(11);
-////	
-//	Produto pr1 = ProdutoJPA.getBayId(4);
-////	
-//	ItemPedido item = new ItemPedido();
-//	item.setPedido(p1);
-//	item.setProduto(pr1);
-//	item.setQuantidade(7);
-//	
-//	ItemPedidoJPA.adicionar(item);
-		//ItemPedido item = ItemPedidoJPA.getBayId(1);
+		//Calendar c = Calendar.getInstance();
+	Pedido p = PedidoJPA.getBayId(56);
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
+	
+	System.out.println(p.getCliente().getCliente()+"  "+p.getVendedor().getVendedor()+"  "+df.format(p.getDataHora()));
 		
-	for(ItemPedido i : p1.getItemPedidos()){	
-		
-	System.out.println(" "+i.getId_item_pedido()+"  "+i.getPedido().getCliente().getCliente()+"  "+i.getProduto().getDescricao()+" "+i.getQuantidade());
 	}
-	}
-
 
 }

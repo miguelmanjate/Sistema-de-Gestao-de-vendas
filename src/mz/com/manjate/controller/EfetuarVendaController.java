@@ -1,8 +1,16 @@
 package mz.com.manjate.controller;
 
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.zkoss.zhtml.Li;
+import org.zkoss.zhtml.Text;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -37,7 +45,7 @@ public class EfetuarVendaController extends GenericForwardComposer<Component> {
 	private Textbox quantidadeProduto;
 	private Combobox cmbxVendedor;
 	private Listbox lbxProdutoSelecionado ;
-	private Listbox lbxProdutosAdicionados;
+	private Listbox lbxProdutosAdicionados, lbxProdutosVendidos;
 	private Label valueCliente, valueClienteId;
 	private Label numPedidoValue;
 	private Label nomeClienteValue;
@@ -65,12 +73,9 @@ public class EfetuarVendaController extends GenericForwardComposer<Component> {
 		cliente.setEndereco(enderecoCliente.getValue());
 
 		if (cliente.isValid()) {
-			ClienteJPA.adicionar(cliente);
 			clienteGlobal = cliente;
 			valueCliente.setValue(cliente.getCliente());
-			valueClienteId.setValue("" + cliente.getId_cliente());
 			priencherVendedor();
-
 			nomeCliente.setDisabled(true);
 			enderecoCliente.setDisabled(true);
 		} else {
@@ -112,10 +117,8 @@ private Cliente getClienteGlobal(){
 		pedido.setVendedor(vendedor);
 		if (pedido.isValid()) {
 			this.pedidoGlobal = pedido;
-			PedidoJPA.adicionar(pedido);
-			
 			cmbxVendedor.setDisabled(true);
-			numPedidoValue.setValue("" + pedido.getNum_pedido());
+			
 			nomeClienteValue.setValue(pedido.getCliente().getCliente());
 			nomeVendedor.setValue(pedido.getVendedor().getVendedor());
 			return pedido;
@@ -134,8 +137,13 @@ private Cliente getClienteGlobal(){
 	public void onClick$btnDescricaoPro(Event e) {
 
 		String descricao = descricaoProduto.getValue();
-		Produto produto = ProdutoJPA.getBayDescricao(descricao);
-		produtoGeral = produto;
+		try {
+				Produto produto = ProdutoJPA.getBayDescricao(descricao);
+				produtoGeral = produto;
+		} catch (Exception e2) {
+			Clients.showNotification("Esse produto nao existe!!");	
+		}
+			
 	}
 
 	public Produto getProdutoGeral(){
@@ -146,8 +154,9 @@ private Cliente getClienteGlobal(){
 		lbxProdutoSelecionado.getItems().clear();
 	    Produto produto = getProdutoGeral();
 		if (!descricaoProduto.getValue().isEmpty()&& produto!=null) {
-
-			int numeroProduto = Integer.parseInt(quantidadeProduto.getValue());
+			 try {
+				 int numeroProduto = Integer.parseInt(quantidadeProduto.getValue());	
+			
 			
 			if (numeroProduto <= produto.getQuantidadeProduto()) {
 				produto.setQuantidadePedida(numeroProduto);
@@ -156,6 +165,9 @@ private Cliente getClienteGlobal(){
 			} else {
 				Clients.showNotification("A quantidade de produtos selecionada eh maior do que a Disponivel");
 			}
+			 } catch (NumberFormatException e2) {
+				 Clients.showNotification("Introdusa um numero natural");
+				}
 		}else{
 			Clients.showNotification("Introdusa o produto Existente!!!!");
 		}
@@ -180,8 +192,6 @@ private Cliente getClienteGlobal(){
 			
 			item.setValue(produto);
 			lbxProdutoSelecionado.appendChild(item);
-
-		
 	}
 
 	public void onClick$btnAvancarLista(Event e){
@@ -197,7 +207,9 @@ private Cliente getClienteGlobal(){
 	public void onClick$btnAddProdutos(Event e){
 		onClick$btnQuantidade(e);
 		Produto produto =  getProdutoGeral();
+		
 		System.out.println("Ponto 1 "+produto.getQuantidadePedida());
+		
 		listaProdutosAddicionados(produto);
 		
 		descricaoProduto.setRawValue(null);
@@ -227,12 +239,22 @@ private Cliente getClienteGlobal(){
 		lbxProdutosAdicionados.appendChild(item);
 
 	}
-	public void onClick$btnVender(Event e) {
-		Produto produto;
+	public void onClick$btnVender(Event e) throws ParseException {
+		onClick$btnCliente(e);
+		
+		Calendar c = Calendar.getInstance();
 	
-	    List<Listitem> items =	lbxProdutosAdicionados.getItems();
-	    
-	    Pedido pedido = PedidoJPA.getBayId(Integer.parseInt(numPedidoValue.getValue()));
+		onSelect$cmbxVendedor(e);
+		onClick$btnInPedido(e);
+		Produto produto =  getProdutoGeral();
+		Pedido pedido = getPedidoGlobal();
+		
+		pedido.setDataHora(c.getTime());
+		List<Listitem> items =	lbxProdutosAdicionados.getItems();
+	if(pedido.isValid() & !items.isEmpty() ){
+		ClienteJPA.adicionar(pedido.getCliente());
+		PedidoJPA.adicionar(pedido);
+	   
 	for(Listitem i : items ){
 		produto = (Produto) i.getValue(); 
 		produto.setQuantidadeProduto(produto.getQuantidadeProduto() - produto.getQuantidadePedida());
@@ -243,10 +265,14 @@ private Cliente getClienteGlobal(){
 		item.setProduto(produto);
 		item.setQuantidade(produto.getQuantidadePedida());
 	    ItemPedidoJPA.adicionar(item);
+	     
+	    Clients.showNotification("A venda foi efectuada com sucesso", "info", lbxProdutosAdicionados , "center", 3000);
 	}
 		formularioEfetuarVendas();
+	}else{
+		Clients.showNotification("A venda nao foi efectuada, Ha dados em falta", "info", lbxProdutosAdicionados, "center", 3000);
 	}
-
+	}
 	public void onClick$btnCancelarPedido(Event e) {
 	formularioEfetuarVendas();
 	}

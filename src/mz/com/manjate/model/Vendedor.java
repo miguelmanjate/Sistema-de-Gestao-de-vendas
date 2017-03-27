@@ -1,8 +1,13 @@
 package mz.com.manjate.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Vendedor {
@@ -12,7 +17,16 @@ public class Vendedor {
 	private int id_vendedor;
 	private String vendedor;
 	private double salario;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascimento")
+	private Date dataNascimento;
 	
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 	public int getId_vendedor() {
 		return id_vendedor;
 	}

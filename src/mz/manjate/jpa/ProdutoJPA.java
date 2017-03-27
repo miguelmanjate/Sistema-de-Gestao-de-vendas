@@ -1,5 +1,6 @@
 package mz.manjate.jpa;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ProdutoJPA {
 		return produto;
 		
 	}
-	public static Produto getBayDescricao(String produto){
+	public static Produto getBayDescricao(String produto)throws SQLException{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("modelJPA");
 		EntityManager manager = factory.createEntityManager();
 		

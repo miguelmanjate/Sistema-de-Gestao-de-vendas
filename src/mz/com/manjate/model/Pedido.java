@@ -1,8 +1,10 @@
 package mz.com.manjate.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.engine.internal.Cascade;
 
@@ -32,8 +36,24 @@ public class Pedido {
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
 	List<ItemPedido> itemPedidos; 
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_hora")
+	private Date dataHora;
 	
 	
+	
+	public Date getDataHora() {
+		return dataHora;
+	}
+
+
+
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
+	}
+
+
+
 	public int getNum_pedido() {
 		return num_pedido;
 	}

@@ -13,6 +13,7 @@
 					<listheader label="Produtos" sort="auto"></listheader>
 					<listheader label="Quantidade" sort="auto"></listheader>
 					<listheader label="Preco Total" sort="auto"></listheader>
+					<listheader label="Data" sort="auto"></listheader>
 				</listhead>
 				<listitem>
 					<listcell label=""></listcell>

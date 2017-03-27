@@ -9,6 +9,7 @@
 						<listheader label="ID do Vendedor" sort="auto"></listheader>
 						<listheader label="Nome " sort="auto"></listheader>
 						<listheader label="Salario " sort="auto"></listheader>
+						<listheader label="Data de nascimento" sort="auto"></listheader>
 					</listhead>
 				</listbox>
 			</panelchildren>
